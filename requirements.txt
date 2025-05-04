@@ -1,9 +1,10 @@
 dash
-pandas
 plotly
+pandas
 scikit-learn
 joblib
+nltk
+wordcloud
 matplotlib
 seaborn
-nltk
 gunicorn
