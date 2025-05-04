@@ -6,7 +6,22 @@ import plotly.express as px
 import pandas as pd
 import joblib
 from sklearn.model_selection import train_test_split
+
+import nltk
+
+# Ensure necessary NLTK data is available
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
+
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords")
+
 import amrutha_diss_v6 as amrutha_module  # Make sure this is in the same folder
+import os
 
 # Load data
 df = pd.read_csv('processed_bug_data.csv')
@@ -76,5 +91,9 @@ def predict_severity(n_clicks, description):
         return f"🔮 Predicted Severity: {pred}"
     return ""
 
-if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=8050)
+app = Dash(__name__)
+server = app.server  # Required for Gunicorn
+
+if __name__ == "__main__":
+    app.run_server(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
