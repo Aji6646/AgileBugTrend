@@ -91,8 +91,7 @@ def predict_severity(n_clicks, description):
         return f"🔮 Predicted Severity: {pred}"
     return ""
 
-app = Dash(__name__)
-server = app.server  # Required for Gunicorn
+
 
 if __name__ == "__main__":
     app.run_server(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
