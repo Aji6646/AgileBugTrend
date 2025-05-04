@@ -59,6 +59,7 @@ trend_fig, severity_fig, resolution_fig, component_fig, priority_fig = create_vi
 
 # Dash app
 app = Dash(__name__)
+server = app.server 
 app.layout = html.Div([
     html.H1("Bug Analysis Dashboard", style={'textAlign': 'center'}),
     html.Div([
